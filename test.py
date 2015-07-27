@@ -1,69 +1,36 @@
+#coding=utf-8
 import pdb
-# heapify solution 1
-# nlog(n)
-# def heapify(nums):
-#     int_max = 2**31-1
-#     size = len(nums)
-#     odd = True
-#     if size % 2 == 0:
-#         odd = False
-#         nums.append(int_max)
-#     size = size/2*2+1
-#     for i in range(size):
-#         j = i
-#         while j > 0:
-#             if j%2 == 0 and nums[(j-2)/2] > nums[j]:
-#                 tmp = nums[(j-2)/2]
-#                 nums[(j-2)/2] = nums[j]
-#                 nums[j] = tmp
-#                 j = (j-2)/2
-#                 continue
-#             if j%2 == 1 and nums[(j-1)/2] > nums[j]:
-#                 tmp = nums[(j-1)/2]
-#                 nums[(j-1)/2] = nums[j]
-#                 nums[j] = tmp
-#                 j = (j-1)/2
-#                 continue
-#             break;   
+import collections as co
+def nextPermutation(num):
+    # write your code here
+    size = len(num)
+    i = size-1
+    while i>0 and num[i] <= num[i-1]:
+        i-=1
+    if i == 0:
+        return sorted(num)
+    a = i-1
+    print num[a]
+    b = size-1
+    while b>a and nums[b]<=nums[a]:
+        b -= 1
+    print num[b]
+    num[a],num[b] =num[b],num[a]
+    num[a+1:] = sorted(num[a+1:])
+    
+    return num
 
 
-#     if not odd:
-#         nums.pop()
-#     return nums
-
-
-# solution two
-# use recursive function
-def heapify(nums,pos):
-    #pdb.set_trace()
-    if 2*pos+1 >= len(nums):
-        return
-
-    int_max = 2**31-1
-    size = len(nums)
-    odd = True
-    if size % 2 == 0:
-        odd = False
-        nums.append(int_max)
-    size = size/2*2+1
-    for i in range(size-1,pos,-2):
-        if nums[i] < nums[(i-2)/2] or nums[i-1] <nums[(i-2)/2]:
-            tmp = nums[(i-2)/2]
-            if nums[i] < nums[i-1]:
-                nums[(i-2)/2] = nums[i]
-                nums[i] = tmp
-                heapify(nums,i)
-            else:
-                nums[(i-2)/2] = nums[i-1]
-                nums[i-1] = tmp
-                heapify(nums,i-1)
-            
-    return
-#nums = [3,6,2,4,5,1]
-nums = [45,39,32,11,100,2,1]
-heapify(nums,0)
+nums = [2,1,1]
 print nums
+res = nextPermutation(nums)
 
 
 
+#print len(res)
+#print nums
+print res
+
+#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,7,100,99,98,97,96,95,94,93,92,91,5]
+#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,91,5,7,92,93,94,95,96,97,98,99,100]
 

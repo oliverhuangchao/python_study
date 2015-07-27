@@ -1,33 +1,36 @@
-# return next permutation
-
-# 2153->2315->2351
-
-def reorder(nums,start):
-	right = nums[start:]
-	right.sort()
-	return nums[:start]+right
-	#return res
-
-def next(nums):
-	i = len(nums)-1
-	while i >= 0:
-		j = i-1
-		while j>=0:
-			if nums[i] > nums[j]:
-				nums[i],nums[j] = nums[j],nums[i]
-				right = nums[j+1:]
-				right.sort()
-				nums[j+1:] = right
-				return
-			j -= 1
-		i -= 1
-	nums.reverse()
+#coding=utf-8
+import pdb
+import collections as co
+def nextPermutation(num):
+    # write your code here
+    size = len(num)
+    i = size-1
+    while i>0 and num[i] <= num[i-1]:
+        i-=1
+    if i == 0:
+        return sorted(num)
+    a = i-1
+    print num[a]
+    b = size-1
+    while b>a and nums[b]<=nums[a]:
+        b -= 1
+    print num[b]
+    num[a],num[b] =num[b],num[a]
+    num[a+1:] = sorted(num[a+1:])
+    
+    return num
 
 
-nums = [2,3,5,1]
+nums = [2,1,1]
 print nums
-next(nums)
-print nums
-for i in range(5):
-	next(nums)
-	print nums
+res = nextPermutation(nums)
+
+
+
+#print len(res)
+#print nums
+print res
+
+#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,7,100,99,98,97,96,95,94,93,92,91,5]
+#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,91,5,7,92,93,94,95,96,97,98,99,100]
+
