@@ -1,4 +1,9 @@
 #coding=utf-8
+#注意这里面的逻辑思维：
+#从后往前，先找到第一个不是递增的数，index = a
+#找到a之后，再去从后往前找到第一个比num[a]大的数
+#交换a，b
+#对a后面的数进行排序
 import pdb
 import collections as co
 def nextPermutation(num):
