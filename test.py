@@ -1,36 +1,36 @@
-#coding=utf-8
-import pdb
-import collections as co
-def nextPermutation(num):
-    # write your code here
-    size = len(num)
-    i = size-1
-    while i>0 and num[i] <= num[i-1]:
-        i-=1
-    if i == 0:
-        return sorted(num)
-    a = i-1
-    print num[a]
-    b = size-1
-    while b>a and nums[b]<=nums[a]:
-        b -= 1
-    print num[b]
-    num[a],num[b] =num[b],num[a]
-    num[a+1:] = sorted(num[a+1:])
-    
-    return num
+# reverse list
+
+class listnode():
+    def __init__(self,x):
+        self._value = x
+        self._next = None
+
+def revereList(head):
+    return rev(head,None)
 
 
-nums = [2,1,1]
-print nums
-res = nextPermutation(nums)
+def rev(head,newhead):
+    if head is None:
+        return newhead
+    else:
+        next = head._next
+        head._next = newhead
+        return rev(next,head)
 
 
+def printlist(head):
+    while head is not None:
+        print head._value
+        head = head._next
 
-#print len(res)
-#print nums
-print res
 
-#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,7,100,99,98,97,96,95,94,93,92,91,5]
-#[1,2,3,4,5,6,7,8,9,10,11,11,11,23,4,5,6,91,5,7,92,93,94,95,96,97,98,99,100]
+x = map(lambda x:listnode(x),range(5))
+head = x[0]
+start = head
+for i in range(1,len(x)):
+    x[i-1]._next = x[i]
+    #i = head
 
+printlist(head)
+head = revereList(head)
+printlist(head)
