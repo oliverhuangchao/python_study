@@ -1,0 +1,53 @@
+import mylist as ll
+import pdb
+# partition the list with value x
+# so value smaller than x is at begining
+# value bigger than x is at the end
+
+# swap twice 
+# first round put all nodes smaller than target at the first
+# second round put all nodes equal to target at the end of the first part
+def partition_list(head,target):
+    begin = ll.ListNode(-1)
+    begin.next = head
+    # put all the value small then target at the front
+    if not head or not head.next:
+        return begin.next
+    a = begin
+    while a.next:
+        if a.next.val < target:
+            tmp = a.next
+            ll.remove_node(a)
+            ll.insert_node(begin,tmp)
+            if a == begin:
+                a = a.next
+        else:
+            a = a.next
+
+    #put all the value bigger than target at the last
+    #a = begin
+    b = begin
+    while b.next and b.next.val < target:
+        b = b.next
+    a = b
+    while a.next:
+        if a.next.val == target:
+            tmp = a.next
+            ll.remove_node(a)
+            ll.insert_node(b,tmp)
+            if a == b:
+                a = a.next
+        else:
+            a = a.next
+
+    return begin.next
+
+
+
+
+
+head = ll.create_list([1,2,1,4,2,3,1,2,1,3,1,2,3,2,2,3,1])
+ll.print_list(head)
+res = partition_list(head,2)
+ll.print_list(res)
+
