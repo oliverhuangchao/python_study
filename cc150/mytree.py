@@ -65,7 +65,7 @@ def preorder_tranversal(root):
         a = tmp.right
     return res
 
-#post tranversal
+# post tranversal
 def postorder_tranversal(root):
     p = root
     if not p:
@@ -89,4 +89,4 @@ def postorder_tranversal(root):
                 break
         if not z:
             break
-
+    return res
