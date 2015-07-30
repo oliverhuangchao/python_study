@@ -42,7 +42,6 @@ def levelOrder(root):
                 tmp = children.popleft()
                 parent.append(tmp)
                 res[-1].append(tmp.val)
-    
     return res
 
 

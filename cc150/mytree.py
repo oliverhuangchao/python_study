@@ -90,3 +90,41 @@ def postorder_tranversal(root):
         if not z:
             break
     return res
+
+# bfs search
+
+def bfs(root,target):
+    q = collections.deque()
+    q.append(root)
+    path = []
+    while q:
+        tmp = q.popleft()
+        path += [tmp.val]
+        if tmp.val == target:
+            print path
+            return
+        if tmp.left:
+            q.append(tmp.left)
+        if tmp.right:
+            q.append(tmp.right)
+    print "do not find %d in this tree" % target
+    #return path
+
+
+def dfs(root,target):
+    s = []
+    #s.append(root)
+    tmp = root
+    path = []
+    while s or tmp:
+        while tmp:
+            s.append(tmp)
+            path.append(tmp.val)
+            if tmp.val == target:
+                print path
+                return
+            tmp = tmp.left
+        p = s.pop()
+        tmp = p.right 
+        #path.append(tmp.val)
+    print "do not find %d in the tree" % target
