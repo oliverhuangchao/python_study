@@ -17,10 +17,8 @@ def findLadders(start, end, dic):
         parents.update(next_level)
     res = [[end]]
     while res and res[0][0] != start:
-        res = [[p]+r for r in res for p in parents[r[0]]]   
+        res = [[p]+r for r in res for p in parents[r[0]]]
     return res
-
-
 
 x = ["hot","dot","dog","lot","log"]
 dic = set(x)
