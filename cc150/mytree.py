@@ -128,3 +128,35 @@ def dfs(root,target):
         tmp = p.right 
         #path.append(tmp.val)
     print "do not find %d in the tree" % target
+
+
+# get the height of tree
+def get_height(root):
+    if not root:
+        return 0
+    return max(get_height(root.left),get_height(root.right)+1
+
+# levelorder tranversal recursive
+def eachlevel(root,level,res):
+    if not root:
+        return 
+    if level == len(res):
+        res.append([])
+    res[level].append(root.val)
+    eachlevel(root.left,level+1,res)
+    self.eachlevel(root.right,level+1,res)
+    
+def level_tranversal(root):
+    res = []
+    eachlevel(root,0,res)
+    return res
+
+
+
+
+
+
+
+
+
+
