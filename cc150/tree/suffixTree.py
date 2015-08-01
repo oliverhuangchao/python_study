@@ -1,5 +1,5 @@
 # implement a suffixTree
-
+# this basic structure can be recited 
 
 import pdb
 class suffixTree:
@@ -26,6 +26,7 @@ class suffixTreeNode:
 			else:
 				self.children[value] = child
 			child.insertString(s[1:],i)
+
 	def searchString(self,s):
 		if not s:
 			return self.indexes
@@ -39,8 +40,8 @@ class suffixTreeNode:
 
 if __name__ == '__main__':
 	sft = suffixTree('chaoh')
-	#print sft.root.searchString('ao')
-	print sft.root.children['a'].indexes
+	print sft.root.searchString('h')
+	#print sft.root.children['a'].indexes
 
 
 

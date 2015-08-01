@@ -1,54 +1,37 @@
-# find the laregest sum submatrix in a matrix
-
+# airplanes in the sky
 import pdb
-def largest_array(array):
-    size = len(array)
-    start = [0 for i in range(size)]
-    end = [0 for i in range(size)]
-    z = [0 for i in range(size)]
-    z[0] = array[0]
-    for i in range(1,size):
-        if z[i-1]+array[i] > array[i]:
-            z[i] = z[i-1]+array[i]
-            end[i] = end[i-1] + 1
-            start[i] = start[i-1]
-        else:
-            z[i] = array[i]
-            start[i] = i
-            end[i] = i
-
-    max_index = 0
-    max_value = z[0]
-    for i in range(1,size):
-        if z[i] > max_value:
-            max_index = i
-            max_value = z[i]
-    return (start[max_index],end[max_index],max_value)
+import heapq
+class intervals:
+    def __init__(self,start,end):
+        self.start = start
+        self.end = end
 
 
 
-def largestSum(matrix):
-    max_left = 0
-    max_right = 0
-    max_up = 0
-    max_down = 0
-    max_value = 0
-    cols = len(matrix[0])
-    tmp = matrix[0]
-    rows = len(matrix)
-    for i in range(rows):
-        for j in range(i,rows):
-            for k in range(cols):
-                tmp[k] += matrix[j][k]
-            first,second,value = largest_array(tmp)
-            if value > max_value:
-                max_left = first
-                max_right = second
-                max_up = i
-                max_down = j
-                max_value = value
 
-    return max_value
+def countOfAirplanes(airplanes):
+    # write your code here
+    airplanes.sort(key=lambda x:x.start)
+    if not airplanes:
+        return 0
+    z = [airplanes[0].end] #use z as a stack
+    res = 1
+    #pdb.set_trace()
+    for i in airplanes[1:]:
+        #print z[0]
+        while z and i.start >= z[0]:
+            heapq.heappop(z)
+        heapq.heappush(z,i.end)
+        #print z
+        res = max(res,len(z))
+    return res
 
 
+airplanes = map(lambda x:intervals(x[0],x[1]),[(1,10),(2,3),(5,8),(4,7)])
+print countOfAirplanes(airplanes)
 
+# x =  [3,2,1,4,5]
+# z = []
+# for i in x:
+#     heapq.heappush(z,i)
+# print z[0]
