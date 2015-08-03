@@ -1,25 +1,23 @@
-# edit distance
-# suppose three operation has the same cost
-# if it is not the same cost, change code in line:19. treat three operation seperately
+# house robber
 
-def minDistance(s, t):
+def houseRobber(a):
     # write your code here
-    z1 = len(s)
-    z2 = len(t)
-    f = [[0 for j in range(z1+1)] for j in range(z2+1)]
-    for j in range(1,z1+1):
-        f[0][j] = f[0][j-1] + 1
-    for i in range(1,z2+1):
-        f[i][0] = f[i-1][0] + 1
-    for i in range(1,z2+1):
-        for j in range(1,z1+1):
-            if s[j-1] == t[i-1]:
-                f[i][j] = f[i-1][j-1]
-            else:
-                f[i][j] = min([f[i-1][j],f[i][j-1],f[i-1][j-1]])+1
-    return f[z2][z1]
+    if not a:
+        return 0
+    if len(a) == 1:
+        return a[0]
+    if len(a) == 2:
+        return max(a)
+    #if len(a) == 3:
+    #    return max(a[1],a[2]+a[0])
+    first = a[0]
+    second = a[1]
+    for i in range(2,len(a)):
+        z = max(second,first + a[i]) 
+        first = second
+        second = z
+    return max(first,second)
 
-
-
-if __name__=='__main__':
-    print minDistance('hello','chaoh')
+a = [9,8,4,5]
+#a = [3,8,4]
+print houseRobber(a )
