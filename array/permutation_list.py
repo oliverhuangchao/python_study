@@ -1,3 +1,7 @@
+# 写出所有的permutationlist，并找到第k个
+# 关键的部分是 while循环里面的那些
+# 一个小的corner部分是最开始的n和k都需要分别-1才可以
+# 这个是需要注意的
 def fac(n):
     res = 1
     while n > 0:
