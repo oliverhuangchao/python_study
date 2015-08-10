@@ -20,10 +20,10 @@ class suffixTreeNode:
 		self.indexes.append(i)
 		if s:
 			value = s[0]
-			child = suffixTreeNode()
 			if value in self.children:
 				child = self.children[value]
 			else:
+				child = suffixTreeNode()
 				self.children[value] = child
 			child.insertString(s[1:],i)
 
